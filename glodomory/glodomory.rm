@@ -1,0 +1,20 @@
+Problem pięciu głodomorów
+
+Do rozwiązywania tego problemu wybrałem sposób zawierający kelnera. Kelner sprawdza, czy ktoś z filizofów czeka na pozwolenie jeść i dodaje go do kolejek z widelcami obok tego filozofa (np. filozofa #0 dodaje do kolejek widelców #0 i #1, filozofa #1 do widelców #1 i #2 itd.) Kolejka sortuje się według zjedzonych przez filozofów posiłków. Po tym sprawdza, kto w tym momencie może zacząć jeść. Muszą zostać spełnione 2 warunki: 
+1) Filozof musi być pierwszym w kolejce do każdego widelca obok niego
+2) Widelce obok filozofa muszą być wolne 
+
+Jeżeli warunki są spełnione, kelner pozwala filozofu przystąpić do jedzenia i usuwa go z kolejek, a widelce zaznacza jak używane w tym momencie.
+
+Po zjedzeniu spaghetti zwiększa się wartość zjedzonych posiłków filozofa i uwolnia widelce.
+
+Wykorzystane mechanizmy IPC:
+1) Współdzielona pamięć o filozofach oraz stanach widelców
+2) Semafory:
+    - pojedyńczy pilnujący dostępu do tablicy ze statusem widelców
+    - tablica przyzwoleń rozpoczęcia jedzenia dla każdego filozofa
+    - tablica pilnująca sprawdzania i modyfikacji danych filozofa
+
+
+Program się kompiluje przez wykonanie polecenia "make" i polecenia "./program.out"
+Żeby skończyć wykonanie programu trzeba wykonać polecenie "killall -9 program.out"
